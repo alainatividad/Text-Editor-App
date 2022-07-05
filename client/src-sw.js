@@ -7,6 +7,7 @@ const { precacheAndRoute } = require("workbox-precaching/precacheAndRoute");
 
 precacheAndRoute(self.__WB_MANIFEST);
 
+// setup a cachefirst strategy on static files
 const pageCache = new CacheFirst({
   cacheName: "page-cache",
   plugins: [
@@ -26,6 +27,7 @@ warmStrategyCache({
 
 registerRoute(({ request }) => request.mode === "navigate", pageCache);
 
+// setup a cachefirst strategy on image files
 registerRoute(
   ({ request }) => request.destination === "image",
   new CacheFirst({
