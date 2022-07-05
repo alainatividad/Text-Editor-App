@@ -1,3 +1,4 @@
+// import the editor and the database functions that saves/gets the content and also the workbox
 import { Workbox } from "workbox-window";
 import Editor from "./editor";
 import "./database";
