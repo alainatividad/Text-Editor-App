@@ -15,15 +15,18 @@ module.exports = () => {
       path: path.resolve(__dirname, "dist"),
     },
     plugins: [
+      // setup the plugins for combining all of the files and minifying it
       new HtmlWebpackPlugin({
         template: "./index.html",
         title: "Just Another Text Editor",
         favicon: "./favicon.ico",
       }),
+      // setup the service worker file to be used in the application
       new InjectManifest({
         swSrc: "./src-sw.js",
         swDest: "./src-sw.js",
       }),
+      // setup the metadata of the application and make it installable
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
@@ -48,6 +51,7 @@ module.exports = () => {
 
     module: {
       rules: [
+        // setup rules for webpack-ing css and js files
         {
           test: /\.css$/i,
           use: ["style-loader", "css-loader"],
